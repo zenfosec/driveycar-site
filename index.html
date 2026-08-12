@@ -140,13 +140,28 @@ section{padding:4.2rem 0}
 .tile p b{color:var(--ink)}
 
 /* screenshot frames */
-.shots .rail{align-items:flex-end}
+/* 193px, not 208: at 208 the four phones plus the watch column overran the 1080px wrap and the
+   last frame sat clipped at the desktop edge. The rail still scrolls (and must, on a phone, where
+   62vw wins), but a cut-off frame reads as a broken layout rather than as more content. */
+.shots .rail{--pw:min(62vw,193px);--stack-gap:1.2rem;align-items:flex-end}
 .frame{
   flex:0 0 auto;scroll-snap-align:center;position:relative;
   border:2px solid var(--road);background:var(--panel);box-shadow:5px 5px 0 var(--shadow);padding:9px;
 }
-.frame-phone{width:min(62vw,208px);aspect-ratio:9/19.5;border-radius:28px}
-.frame-watch{width:min(46vw,168px);aspect-ratio:1/1.16;border-radius:38px;margin-bottom:1.6rem}
+.frame-phone{width:var(--pw);aspect-ratio:9/19.5;border-radius:28px}
+.frame-watch{border-radius:38px;aspect-ratio:410/502}
+/* Two watch shots stacked so the column reads as one item the same height as a phone. A single
+   short watch frame left the row visibly lopsided.
+   The width is DERIVED from the phone width rather than from the row: phone height is pw*19.5/9,
+   so each watch frame gets half of that minus the gap, converted back to a width through the
+   410x502 capture ratio. Stretching the column to the flex line instead is circular (the line's
+   cross size depends on the item, the item's width would depend on the line) and browsers
+   resolve it by blowing the frame up to the full rail width.  */
+.frame-stack{
+  flex:0 0 auto;scroll-snap-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:var(--stack-gap);
+}
+.frame-stack .frame-watch{width:calc((var(--pw) * 19.5 / 9 - var(--stack-gap)) / 2 * 410 / 502)}
 .frame img{display:block;width:100%;height:100%;object-fit:cover;border-radius:20px;background:var(--sky)}
 .frame-watch img{border-radius:28px}
 
@@ -500,7 +515,7 @@ footer nav a:hover{text-decoration:underline}
   <div class="wrap">
     <p class="eyebrow">Screenshots</p>
     <h2>Straight from the game.</h2>
-    <p class="sub">Four from iPhone, one from Apple&nbsp;Watch. No device frames, no retouching.</p>
+    <p class="sub">Four from iPhone, two from Apple&nbsp;Watch. No device frames, no retouching.</p>
     <div class="rail" tabindex="0" aria-label="Screenshots, scrolls horizontally">
       <div class="frame frame-phone">
         <img src="press/iphone69-01-countryside-oncoming.png" width="1320" height="2868"
@@ -518,9 +533,15 @@ footer nav a:hover{text-decoration:underline}
         <img src="press/iphone69-06-garage-car-select.png" width="1320" height="2868"
              loading="lazy" alt="iPhone: the garage, picking a voxel car">
       </div>
-      <div class="frame frame-watch">
-        <img src="press/watch-ultra49-01-crown-steer-gameplay.png" width="410" height="502"
-             loading="lazy" alt="Apple Watch: a run on the wrist, a truck crossing the road ahead, coins and the score on screen">
+      <div class="frame-stack">
+        <div class="frame frame-watch">
+          <img src="press/watch-ultra49-01-crown-steer-gameplay.png" width="410" height="502"
+               loading="lazy" alt="Apple Watch: a run on the wrist, a truck crossing the road ahead, coins and the score on screen">
+        </div>
+        <div class="frame frame-watch">
+          <img src="press/watch-ultra49-02-highway.png" width="410" height="502"
+               loading="lazy" alt="Apple Watch: a highway run, traffic in both directions and the score above the road">
+        </div>
       </div>
     </div>
   </div>
