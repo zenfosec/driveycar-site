@@ -4,81 +4,169 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Support · Drivey Car</title>
-<meta name="description" content="Support for Drivey Car by Satoru Labs: frequently asked questions and how to contact us.">
+<meta name="description" content="Support and FAQ for Drivey Car, the voxel arcade driving game for iPhone, iPad, and Apple Watch: how to brake, controls per platform, why coins don't sync between devices, Game Center, and contact.">
+<meta name="theme-color" content="#BFE3F2">
+<link rel="canonical" href="https://driveycar.com/support.html">
+<link rel="icon" href="press/driveycar-icon-1024.png">
+<link rel="apple-touch-icon" href="press/driveycar-icon-1024.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Drivey Car">
+<meta property="og:url" content="https://driveycar.com/support.html">
+<meta property="og:title" content="Drivey Car Support">
+<meta property="og:description" content="Answers first, email second: how to brake, the controls on every device, Game Center, the Supporter Pack, and how to reach us.">
+<meta property="og:image" content="https://driveycar.com/press/driveycar-icon-1024.png">
+<meta property="og:image:alt" content="The Drivey Car app icon: a red voxel car on grass under a blue sky">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-  :root{
-    --bg:#FAFAF9; --ink:#25303A; --dim:#6B7680; --accent:#FF5A4E; --line:rgba(37,48,58,.16);
-  }
-  @media (prefers-color-scheme:dark){
-    :root{ --bg:#14181D; --ink:#E8EDF2; --dim:#97A3AE; --accent:#FF6A5E; --line:rgba(232,237,242,.18); }
-  }
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  body{
-    background:var(--bg); color:var(--ink); line-height:1.65;
-    font-family:ui-rounded,"SF Pro Rounded",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  }
-  main{ max-width:64ch; margin:0 auto; padding:3rem 1.4rem 4rem; }
-  .back{ font-size:.88rem; margin-bottom:2rem; }
-  a{ color:var(--accent); }
-  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
-  h1{ font-weight:900; font-size:1.9rem; letter-spacing:.02em; margin-bottom:.4rem; }
-  .lede{ color:var(--dim); font-weight:500; margin-bottom:2rem; }
-  h2{ font-weight:800; font-size:1.12rem; margin:2rem 0 .5rem; }
-  p{ margin:.5rem 0; }
-  dt{ font-weight:800; margin:1.4rem 0 .25rem; }
-  dd{ margin:0; color:var(--dim); }
-  dd a{ font-weight:600; }
-  .contact{
-    margin-top:2.6rem; border:1px solid var(--line); border-radius:12px; padding:1.2rem 1.3rem;
-  }
-  footer{ border-top:1px solid var(--line); text-align:center; padding:1.6rem 1.4rem 2.4rem; color:var(--dim); font-size:.85rem; }
-  footer a{ color:var(--ink); font-weight:700; text-decoration:none; border-bottom:2px solid var(--line); }
-  footer a:hover, footer a:focus-visible{ border-bottom-color:var(--accent); }
+:root{
+  --sky:#BFE3F2; --sky-2:#DCEFF8; --grass:#8FD14F; --road:#4D5460; --coin:#FFC93C; --coral:#FF5A4E;
+  --ink:#25303A; --dim:#5A6A77; --panel:#FFFFFF; --panel-2:#F4F8FB;
+  --line:rgba(37,48,58,.14); --shadow:rgba(37,48,58,.2);
+  --block:ui-rounded,"SF Pro Rounded",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--sky:#0F1720;--sky-2:#17222D;--road:#2A2F36;--coral:#FF6A5E;
+    --ink:#EAF2F7;--dim:#9FB2BE;--panel:#182029;--panel-2:#111820;--line:rgba(255,255,255,.12);--shadow:rgba(0,0,0,.5)}
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--block);color:var(--ink);line-height:1.65;font-size:1.0625rem;background:var(--panel-2)}
+a{color:var(--coral)}
+a:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:4px}
+header{text-align:center;padding:3rem 1.25rem 2rem;background:linear-gradient(180deg,var(--sky),var(--sky-2))}
+.brand{font-weight:900;letter-spacing:.02em;font-size:1.1rem;text-decoration:none;color:var(--coral);text-shadow:2px 2px 0 var(--road)}
+@media (prefers-color-scheme:dark){.brand{text-shadow:2px 2px 0 #000}}
+h1{font-size:clamp(1.7rem,5vw,2.2rem);font-weight:900;margin:.8rem 0 .3rem;color:var(--ink)}
+.lede{color:var(--road);font-weight:600}
+@media (prefers-color-scheme:dark){.lede{color:var(--dim)}}
+main{max-width:68ch;margin:0 auto;padding:2.4rem 1.25rem 3.5rem}
+h2{font-size:1.2rem;font-weight:900;color:var(--coral);margin:2.2rem 0 .6rem}
+ol{padding-left:1.3rem;margin:.5rem 0}
+li{margin:.35rem 0}
+strong{color:var(--ink)}
+dl{margin-top:.4rem}
+dt{font-weight:900;margin:1.4rem 0 .3rem;color:var(--ink)}
+dd{margin:0;color:var(--dim)}
+dd strong{color:var(--ink)}
+.contact{margin-top:2.6rem;background:var(--panel);border:3px solid var(--road);border-radius:14px;
+  padding:1.4rem;text-align:center;box-shadow:6px 6px 0 var(--shadow)}
+footer{border-top:3px solid var(--road);text-align:center;padding:2rem 1.25rem 3rem;color:var(--dim);font-size:.92rem;background:var(--panel-2)}
+footer a{font-weight:800}
 </style>
 </head>
 <body>
-<main>
-  <p class="back"><a href="index.html">&larr; driveycar.com</a></p>
+<header>
+  <a class="brand" href="index.html">DRIVEY&nbsp;CAR</a>
   <h1>Support</h1>
-  <p class="lede">Drivey Car is an arcade game for iPhone, iPad, and Apple&nbsp;Watch, made by
-  Satoru&nbsp;Labs. It's free to play, with no ads.</p>
+  <p class="lede">Answers first, email second. Most runs end well.</p>
+</header>
+<main>
+  <h2>What is Drivey Car?</h2>
+  <p>Drivey Car is a bright voxel driving game for iPhone, iPad, and Apple&nbsp;Watch. The car handles the
+  gas, rolling forward up an endless blocky road. You steer left and right, and <strong>hold to
+  brake</strong> to time the gaps in crossing traffic, wait out trains at rail crossings, and swerve
+  around the roadworks. Collect coins to open up the garage: eight voxel cars, one yours from the
+  start, three more on coins alone, and four in the Supporter Pack. You get three lives a run, and
+  retry is instant.</p>
+
+  <h2>How do I brake? (and steer)</h2>
+  <p>Braking is how you time the road: hold to stop at the edge of a crossing and let the traffic
+  pass, then release into the gap and surge back up to speed. It works a little differently per device:</p>
+  <ol>
+    <li><strong>iPhone &amp; iPad (default):</strong> drag left/right to <strong>steer</strong>; hold a
+      <strong>second finger</strong> anywhere on the screen to <strong>brake</strong>. A red BRAKE
+      badge appears while it's held.</li>
+    <li><strong>iPhone &amp; iPad (tilt mode):</strong> turn on tilt steering in Settings; then you
+      <strong>steer by tilting</strong> the device, and <strong>any touch on the screen brakes</strong>.</li>
+    <li><strong>Apple Watch:</strong> <strong>steer</strong> with the Digital&nbsp;Crown (or by tilting
+      your wrist); <strong>press and hold</strong> the screen to <strong>brake</strong>; a
+      <strong>quick tap pauses</strong>.</li>
+  </ol>
 
   <h2>Frequently asked</h2>
   <dl>
-    <dt>How do I use the optional Game Center leaderboard?</dt>
-    <dd>Leaderboards use Apple's Game&nbsp;Center, and sign-in is managed by iOS; open
-      <strong>Settings &rarr; Game&nbsp;Center</strong> on your device and sign in there (for
-      Apple&nbsp;Watch, sign in on the paired iPhone). It's entirely optional; the game is fully
-      playable without it.</dd>
+    <dt>Why don't my coins and unlocked cars carry over between my iPhone and my watch?</dt>
+    <dd>Coins, unlocked cars, and your best score are stored <strong>per device</strong>: your watch
+      keeps its own progress, and your iPhone and iPad keep theirs. That's what lets the game run fully
+      offline with no account. The one thing that <strong>is</strong> shared is the
+      <strong>worldwide Game&nbsp;Center leaderboards</strong>: a score set on any device lands on the
+      board for the mode you were driving.</dd>
 
-    <dt>Where is my progress stored?</dt>
-    <dd>On your device. Drivey Car needs no account and no sign-up; your progress and settings are
-      stored on the device itself, per device. If you delete the app, that information is deleted
-      with it.</dd>
+    <dt>How do I reset my coins and progress?</dt>
+    <dd>Everything lives on the device itself, in the system's standard on-device storage. There's no
+      reset button in the game, so the way to clear it is to delete the app and reinstall: that wipes
+      coins, unlocked cars, and best scores on that device. Your Supporter&nbsp;Pack isn't lost, since
+      it follows your Apple&nbsp;Account. Scores already posted to Game&nbsp;Center stay on Apple's
+      boards.</dd>
+
+    <dt>The car drives off on its own. Is that a bug?</dt>
+    <dd>No, that's the game. The car handles the gas and always wants to go. <strong>Hold the
+      brake</strong> to stop when the road demands it (crossing traffic, trains), then let go and
+      you surge right back up to speed.</dd>
+
+    <dt>Steering feels too twitchy (or too slow).</dt>
+    <dd>Open <strong>Settings</strong> and adjust the steering option. On Apple&nbsp;Watch you can also
+      cycle Crown sensitivity. If you prefer tilt, switch steering mode there too. On iPhone and iPad
+      you can change it mid-run: pause, tap SETTINGS, and it takes effect the moment you resume. On
+      Apple&nbsp;Watch, settings live on the start screen, so a change applies to your next run.</dd>
+
+    <dt>What exactly ends a run?</dt>
+    <dd>Any hit costs a life: a crossing car, a train, a roadwork barrier. You start each run with
+      <strong>three lives</strong> (spares are parked out on the road), and when they're gone the run
+      ends. One other thing ends a run: park for too long and the road catches up with you. Brake all
+      you like to time a gap, but keep making progress once it opens; with haptics on you get a warning
+      buzz first. The upside: <strong>retry is instant</strong>, so you're always one tap from the next
+      attempt.</dd>
+
+    <dt>How do I use the leaderboard / it says I need to sign in.</dt>
+    <dd>Rankings use Apple's <strong>Game&nbsp;Center</strong>. Sign in under your device
+      <em>Settings&nbsp;→ Game&nbsp;Center</em> (on the watch, sign in on the paired iPhone), then finish
+      a run. It's optional; the game is fully playable without it, and your iPhone, iPad, and watch
+      all race the same worldwide boards. One exception: Secret&nbsp;Agent&nbsp;Pursuer is an iPhone
+      and iPad mode, so its board doesn't show up on the watch.</dd>
+
+    <dt>Does tilt steering track my movement?</dt>
+    <dd><strong>No.</strong> When tilt steering is on, the app reads the motion sensors only to move the
+      car, live, in memory. Those readings are never recorded, stored, or sent anywhere. Tilt is
+      optional and off by default.</dd>
+
+    <dt>What's the Supporter Pack? How do I restore it?</dt>
+    <dd>The Supporter Pack is one optional <strong>$2.99</strong> purchase for anyone who wants to
+      support the game. On every device it unlocks <strong>4 premium cars, a coin doubler, and the
+      Night&nbsp;Drive bonus world</strong>. On iPhone and iPad it also adds
+      <strong>Secret&nbsp;Agent&nbsp;Pursuer</strong>, a bonus armed-pursuit mode, plus
+      <strong>5 bonus soundtracks and a horn</strong>. The three regular driving modes stay free with or
+      without it, and nothing in the pack affects a score on their leaderboards. To restore it on a new
+      device (or after a reinstall), open <strong>Settings</strong> and tap
+      <strong>Restore&nbsp;Purchases</strong>; it's also on the Supporter&nbsp;Pack screen. Purchases
+      follow your Apple&nbsp;Account, so a pack bought on your iPhone restores on your iPad and
+      Apple&nbsp;Watch signed in to the same account.</dd>
+
+    <dt>Can I get a refund for the Supporter Pack?</dt>
+    <dd>Apple handles every App&nbsp;Store refund, not us. Go to
+      <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>, sign in with your
+      Apple&nbsp;Account, find Drivey&nbsp;Car and choose Request a Refund. We have no way to issue one
+      ourselves, but do tell us what went wrong so we can fix it.</dd>
 
     <dt>Does Drivey Car collect my data?</dt>
-    <dd>No. No ads, no accounts, no analytics, no tracking. See the
-      <a href="privacy.html">privacy policy</a>; it's a two-minute read.</dd>
+    <dd><strong>No.</strong> No ads, no accounts, no analytics, no tracking. Scores you post to
+      Game&nbsp;Center are handled by Apple, and the optional Supporter&nbsp;Pack is purchased through
+      Apple's App&nbsp;Store; we run no servers and see no personal data. The full policy is a
+      two-minute read: <a href="privacy.html">privacy policy</a>.</dd>
 
-    <dt>How do I restore a purchase?</dt>
-    <dd>If you've made a purchase in Drivey Car, open <strong>Settings</strong> in the app and tap
-      <strong>Restore Purchases</strong>. Purchases are tied to your Apple&nbsp;Account, so signing in
-      with the same account restores them on your other devices.</dd>
-
-    <dt>Something isn't working. What should I do?</dt>
-    <dd>Email us. Include your device model and OS version, and describe what happened. We read
-      everything.</dd>
+    <dt>Does the Apple Watch app need my phone?</dt>
+    <dd>No. The watch app is a complete game that runs on its own, even with your phone out of range.</dd>
   </dl>
 
   <div class="contact">
-    <p><strong>Contact</strong><br>
-    Questions, feedback, or trouble with the app? Email
-    <a href="mailto:support@satoru.ink">support@satoru.ink</a> and we'll get back to you.</p>
+    <p><strong>Still stuck, found a bug, or have an idea?</strong><br>
+    Email <a href="mailto:support@satoru.ink">support@satoru.ink</a>
+    <br>
+    Include your device model and OS version if it's a bug; it helps a lot.</p>
   </div>
 </main>
 <footer>
-  <p><a href="index.html">Drivey Car</a> &middot; <a href="privacy.html">Privacy</a> &middot;
-     <a href="terms.html">Terms</a> &middot; &copy; 2026 Satoru Labs</p>
+  <p><a href="index.html">Drivey Car</a> · <a href="privacy.html">Privacy</a> ·
+     <a href="terms.html">Terms</a> · © 2026 Satoru Labs</p>
 </footer>
 </body>
 </html>

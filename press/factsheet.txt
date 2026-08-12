@@ -1,0 +1,17 @@
+DRIVEY CAR PRESS FACT SHEET
+
+GAME:           Drivey Car!
+DEVELOPER:      Satoru Labs (Dave Howard, solo developer)
+PLATFORMS:      iPhone and iPad (iOS 17+), Apple Watch (watchOS 11+, fully standalone)
+PRICE:          Free. One optional $2.99 Supporter Pack (non-consumable). No ads, no
+                subscriptions.
+MODES:          Crossings, Two-Way, Highway, plus a shared worldwide Daily Run.
+                Secret Agent Pursuer with the Supporter Pack (iPhone and iPad).
+LEADERBOARDS:   Five optional worldwide Game Center boards: one per mode, plus the
+                shared Daily Run board. Apple Watch shares every board except Pursuer.
+PRIVACY:        App Store label "Data Not Collected". No accounts, no analytics, no
+                third-party SDKs.
+ENGINE:         Custom Swift engine and voxel renderer, zero third-party dependencies
+PRESS CONTACT:  support@satoru.ink
+WEBSITE:        https://driveycar.com
+APP STORE:      https://apps.apple.com/app/id6791788958

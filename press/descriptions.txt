@@ -1,0 +1,65 @@
+DRIVEY CAR PRESS DESCRIPTIONS
+
+ONE PARAGRAPH (boilerplate)
+
+Drivey Car is a bright voxel arcade driving game about momentum, made for iPhone, iPad, and
+Apple Watch by solo developer Dave Howard of Satoru Labs. The car handles the gas all by
+itself and always wants to go. You steer, thread the traffic, and hold to brake at the edge
+of a crossing, then release into the gap while the train thunders past. Three free driving
+modes, a shared worldwide Daily Run, four changing worlds, and a garage of unlockable voxel
+cars. Free with no ads, no accounts, and no tracking; one optional $2.99 Supporter Pack adds
+the Secret Agent Pursuer mode and the rest of the extras. The Apple Watch version is a
+complete standalone game steered with the Digital Crown.
+
+
+ONE PAGE
+
+ABOUT THE GAME
+Drivey Car is a voxel arcade driver built around one idea: the car handles the gas, so the
+brake is the whole game. There is no gas pedal and no reverse. Your car always wants to go,
+and the world keeps giving you reasons to stop: crossing traffic, freight trains, roadworks,
+oncoming lanes. The art is spending the brake as little as you can get away with, holding at
+the edge of a crossing, and releasing into the gap at exactly the right moment.
+
+HOW IT PLAYS
+Steer by dragging (or tilting) to pick your line. Hold to brake and the car plants itself at
+the edge while the wall of traffic rolls by. Let go and it surges straight back up to speed.
+Red lights are for everyone else: you stop for trains, never for a light. Three lives a run,
+spare ones parked out on the road, instant retry.
+
+WHAT IS IN IT
+- Three free driving modes: Crossings (the gauntlet), Two-Way (an undivided country road),
+  Highway (eight lanes, cross the median to overtake). Highway fills in the longer you drive,
+  and deep in a run the cars start changing lanes. They signal first.
+- Secret Agent Pursuer, a Supporter Pack pursuit mode for iPhone and iPad: take rival agents
+  off the road with oil slicks and spy gadgetry, mind the civilians, and climb the
+  Department's ranks. It keeps ramping up the way Highway does. Its own leaderboard, and its
+  own soundtrack: Pursuit Directive takes over for the whole run.
+- The Daily Run: one shared worldwide course per day with its own 24-hour leaderboard.
+- Four changing worlds that cycle as you drive, from countryside to a rusted-out dystopia.
+- Road power-ups: shield, coin magnet, coin burst, spare lives.
+- A garage of 8 voxel cars: the starter car, three unlocked with coins that only exist inside
+  the game, four in the Supporter Pack.
+- Seven original soundtracks on iPhone and iPad: two free, five in the Supporter Pack.
+- Five optional Game Center leaderboards: one per mode, plus the shared Daily Run board.
+
+THE APPLE WATCH VERSION
+A complete game on its own, not a companion. Steer with the Digital Crown or by tilting your
+wrist, press and hold the screen to brake, quick-tap to pause. No iPhone required, and a
+watch run posts to the same worldwide leaderboards as everyone else, every board except
+Pursuer, which is an iPhone and iPad mode. The watch runs silent by design: haptics carry the
+feedback instead.
+
+NO NONSENSE
+Free means free: no ads, no accounts, no tracking, no subscriptions. The App Store privacy
+label is "Data Not Collected" and it is literal. One optional $2.99 Supporter Pack unlocks
+the extras (the Secret Agent Pursuer mode, 4 premium cars, a coin doubler, the Night Drive
+bonus world, 5 bonus soundtracks, and a horn) and never touches score or fairness.
+
+ABOUT SATORU LABS
+Satoru Labs is Dave Howard, a solo developer. Drivey Car is written in Swift with zero
+third-party dependencies: a custom deterministic engine, a baked-voxel renderer, and a
+headless test harness that proves every generated road is survivable before it ships.
+
+CONTACT
+support@satoru.ink · https://driveycar.com · Supporter Pack promo codes available for press.

@@ -1,25 +1,22 @@
 # driveycar-site
 
-Deploy repo for **driveycar.com** (GitHub Pages under the `zenfosec` account).
+Static site for **driveycar.com**, served by GitHub Pages from this repo's `main` branch.
+The custom domain comes from the `CNAME` file; HTTPS is enforced.
 
-**The source of truth is `driveycar/site/`** — edit the pages there and copy them here to publish.
-This folder holds only the public pages that get served. Right now that is the **Phase 1 vague
-placeholder set** (pre-App-Store-approval — deliberately says nothing about what the game is):
+| Path | URL | Role |
+|---|---|---|
+| `index.html` | https://driveycar.com | Home |
+| `support.html` | https://driveycar.com/support.html | App Store **Support URL** |
+| `privacy.html` | https://driveycar.com/privacy.html | App Store **Privacy Policy URL** |
+| `terms.html` | https://driveycar.com/terms.html | Terms of service |
+| `press.html` + `press/` | https://driveycar.com/press.html | Press kit: screenshots, GIF, MP4, fact sheet, zip |
 
-- `index.html` — teaser page → `https://driveycar.com`
-- `support.html` — support + FAQ → `https://driveycar.com/support.html` (App Store **Support URL**)
-- `privacy.html` — privacy policy → `https://driveycar.com/privacy.html` (App Store **Privacy Policy URL**)
-- `terms.html` — terms of service → `https://driveycar.com/terms.html`
+Every page is self-contained: inline CSS, no external requests, no build step, no JavaScript.
 
-Self-contained static pages: inline CSS, **no external requests**, no build step.
+This repo is a publish target. Pages are authored elsewhere and copied here, so edits made
+directly in this repo will be overwritten by the next publish.
 
-**Do not copy anything from `driveycar/site/marketing/` here before Apple approves the app.** The
-post-approval swap (Phase 2) is a single documented copy step — see Step F in
-`driveycar/site/DEPLOY.md`.
+**Drivey Car** is a free voxel driving game for iPhone, iPad and Apple Watch.
+[App Store](https://apps.apple.com/app/id6791788958) · [support@satoru.ink](mailto:support@satoru.ink)
 
-## Status
-Staged, files only — **no `git init`, no remote, and no `CNAME` file yet.** The full publish
-walkthrough (init → `gh repo create driveycar-site --push` → enable Pages → deploy without CNAME first
-for the `zenfosec.github.io/driveycar-site/` fallback → Namecheap DNS → add `CNAME` → Enforce HTTPS →
-verify) lives in `driveycar/site/DEPLOY.md`. The `CNAME` file is added in that walkthrough's Step C,
-*after* DNS — not now.
+© 2026 Satoru Labs
