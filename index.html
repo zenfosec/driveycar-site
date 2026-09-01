@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Drivey Car! Time the gap. Free on iPhone, iPad, Apple Watch</title>
-<meta name="description" content="A bright voxel arcade driving game about momentum. The car handles the gas, you thread the traffic and time the gap. Free on iPhone, iPad, and Apple Watch.">
+<title>Drivey Car! Cross the median to overtake. Free on iPhone, iPad, Apple Watch</title>
+<meta name="description" content="A bright voxel arcade driving game about momentum. The car handles the gas. You steer eight lanes and cross the median to overtake. Free on iPhone, iPad, and Apple Watch.">
 <meta name="theme-color" content="#BFE3F2">
 <link rel="canonical" href="https://driveycar.com/">
 <link rel="icon" href="press/driveycar-icon-1024.png">
@@ -12,34 +12,51 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Drivey Car">
 <meta property="og:url" content="https://driveycar.com/">
-<meta property="og:title" content="Drivey Car! Time the gap, keep it rolling.">
+<meta property="og:title" content="Drivey Car! Cross the median to overtake.">
 <meta property="og:description" content="A bright voxel arcade driving game about momentum. Free, no ads, on iPhone, iPad, and Apple Watch.">
 <meta property="og:image" content="https://driveycar.com/press/driveycar-icon-1024.png">
 <meta property="og:image:alt" content="The Drivey Car app icon: a red voxel car on grass under a blue sky">
 <meta name="twitter:card" content="summary_large_image">
-<style>
-:root{
+<style>:root{
   --sky:#BFE3F2; --sky-2:#E2F2FA;
   --grass:#8FD14F; --grass-2:#83C544; --grass-ink:#1F3010;
   --road:#4D5460; --road-2:#5B6472; --road-3:#3F4650;
-  --coin:#FFC93C; --coral:#FF5A4E; --coral-2:#FF7A6E;
+  --coin:#FFC93C; --coin-ink:#3A2A00; --coral:#FF5A4E; --coral-2:#FF7A6E;
+  --yellow:#F2C230; --amber:#FFB020; --cyan:#63E6F5;
+  --night:#0B1220; --night-2:#141E2C; --night-ink:#EAF2F7; --night-dim:#A9B7C6;
   --ink:#25303A; --dim:#5A6A77;
-  --panel:#FFFFFF; --page:#F5FAFD;
+  --panel:#FFFFFF; --page:#F5FAFD; --paper:#FFFDF6;
   --line:rgba(37,48,58,.14); --shadow:rgba(37,48,58,.18); --stamp:var(--road);
   --round:ui-rounded,"SF Pro Rounded",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){
-  :root{
+  :root:not([data-theme="light"]){
     --sky:#111C26; --sky-2:#0D141B;
     --grass:#3F6526; --grass-2:#38591F; --grass-ink:#DFF0CC;
     --road:#333A44; --road-2:#3E4652; --road-3:#282E36;
     --coral:#FF6A5E; --coral-2:#FF8A7E;
+    --night:#06090F; --night-2:#0F1620;
     --ink:#EAF2F7; --dim:#9AACB8;
-    --panel:#161E26; --page:#0D141B;
+    --panel:#161E26; --page:#0D141B; --paper:#1A1F24;
     --line:rgba(255,255,255,.12); --shadow:rgba(0,0,0,.45); --stamp:#000;
-  }
 }
+  :root:not([data-theme="light"]) .badge-light{display:none}
+  :root:not([data-theme="light"]) .badge-dark{display:block}
+}
+:root[data-theme="dark"]{
+    --sky:#111C26; --sky-2:#0D141B;
+    --grass:#3F6526; --grass-2:#38591F; --grass-ink:#DFF0CC;
+    --road:#333A44; --road-2:#3E4652; --road-3:#282E36;
+    --coral:#FF6A5E; --coral-2:#FF8A7E;
+    --night:#06090F; --night-2:#0F1620;
+    --ink:#EAF2F7; --dim:#9AACB8;
+    --panel:#161E26; --page:#0D141B; --paper:#1A1F24;
+    --line:rgba(255,255,255,.12); --shadow:rgba(0,0,0,.45); --stamp:#000;
+}
+:root[data-theme="dark"] .badge-light{display:none}
+:root[data-theme="dark"] .badge-dark{display:block}
+
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:var(--round);background:var(--page);color:var(--ink);line-height:1.6;font-size:1.0625rem}
@@ -47,9 +64,11 @@ a{color:var(--coral)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:6px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 1.4rem}
 .eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
-h2{font-size:clamp(1.6rem,4.2vw,2.25rem);font-weight:900;letter-spacing:.01em;margin:.45rem 0 .6rem}
+h2{font-size:clamp(1.6rem,4.2vw,2.25rem);font-weight:900;letter-spacing:.01em;margin:.45rem 0 .6rem;text-wrap:balance}
 .sub{color:var(--dim);font-weight:500;max-width:52ch}
+.sub b{color:var(--ink)}
 section{padding:4.2rem 0}
+.tight{padding-top:0}
 
 /* ------------------------------------------------ hero */
 .hero{background:linear-gradient(180deg,var(--sky),var(--sky-2));text-align:center;padding:4.2rem 1.4rem 3.4rem}
@@ -58,53 +77,57 @@ section{padding:4.2rem 0}
   font-size:clamp(3rem,11vw,5.6rem);font-weight:900;letter-spacing:.02em;line-height:.95;
   color:var(--coral);text-shadow:5px 5px 0 var(--stamp);margin:.55rem 0 1.3rem;
 }
-.killer{font-size:clamp(1.4rem,3.8vw,1.95rem);font-weight:800;letter-spacing:.01em}
-.subline{max-width:44ch;margin:.55rem auto 2rem;color:var(--dim);font-weight:500}
+.killer{font-size:clamp(1.4rem,3.8vw,1.95rem);font-weight:800;letter-spacing:.01em;text-wrap:balance}
+.subline{max-width:46ch;margin:.55rem auto 2rem;color:var(--dim);font-weight:500}
+.subline b{color:var(--ink)}
 .cta{display:flex;flex-direction:column;align-items:center;gap:.9rem}
-/* Apple's official "Download on the App Store" badge, inlined. Clear space stays at least a
-   quarter of the badge height and the artwork scales with its aspect ratio locked, per Apple's
-   marketing guidelines. Black badge serves the light theme, white badge the dark theme. */
 .store-badge{display:inline-block;margin:14px;line-height:0}
 .store-badge svg{display:block;height:54px;width:auto}
 .badge-light{display:block}
 .badge-dark{display:none}
-@media (prefers-color-scheme:dark){
-  .badge-light{display:none}
-  .badge-dark{display:block}
-}
 .meta{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
 
-/* ------------------------------------------------ the crossing (signature) */
-.crossing-zone{padding:0;background:var(--sky-2)}
-.crossing{
-  display:block;width:100%;border:none;padding:0;cursor:pointer;position:relative;
-  background:var(--grass);border-top:4px solid var(--road);border-bottom:4px solid var(--road);
-  -webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation;
+/* ------------------------------------------------ the highway (signature) */
+.hw-zone{padding:0;background:var(--sky-2)}
+.hw{
+  position:relative;background:var(--grass);border-top:4px solid var(--road);border-bottom:4px solid var(--road);
+  -webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:none;cursor:grab;outline:none;
 }
-.crossing svg{display:block;width:100%;height:min(46vw,340px)}
+.hw:active{cursor:grabbing}
+.hw:focus-visible{box-shadow:inset 0 0 0 4px var(--coral)}
+.hw svg{display:block;width:100%;height:min(52vw,380px)}
 .hint{
   position:absolute;top:.9rem;left:50%;transform:translateX(-50%);white-space:nowrap;
   font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
   background:var(--ink);color:var(--page);padding:.45rem .9rem;border-radius:999px;pointer-events:none;
 }
-@media (prefers-color-scheme:dark){.hint{background:#EAF2F7;color:#10161C}}
-.hint-go{display:none}
-.crossing:active .hint-hold{display:none}
-.crossing:active .hint-go{display:inline-block}
-.lane-a{animation:laneA 9s linear infinite}
-.lane-b{animation:laneB 13s linear infinite}
-@keyframes laneA{to{transform:translateX(-1500px)}}
-@keyframes laneB{to{transform:translateX(1500px)}}
-.crossing:active .lane-a,.crossing:active .lane-b{animation-play-state:paused}
+.hud{
+  position:absolute;top:.9rem;font-family:var(--mono);font-size:.8rem;font-weight:700;letter-spacing:.06em;
+  background:var(--ink);color:var(--page);padding:.4rem .7rem;border-radius:999px;pointer-events:none;
+  display:flex;align-items:center;gap:.3rem;line-height:1;
+}
+.hud-score{left:.9rem;font-variant-numeric:tabular-nums;min-width:3.6em;justify-content:center}
+.hud-lives{right:.9rem}
+.hud-lives i{display:block;width:16px;height:9px;border-radius:3px;background:var(--coral);transition:opacity .2s}
+.hud-lives i.lost{opacity:.22}
+.hw-tilt{
+  position:absolute;right:.9rem;bottom:.9rem;font-family:var(--mono);font-size:.68rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;background:var(--page);color:var(--ink);border:2px solid var(--ink);
+  padding:.45rem .8rem;border-radius:999px;cursor:pointer;touch-action:manipulation;
+}
+.hw-tilt[aria-pressed="true"]{background:var(--ink);color:var(--page)}
+.dash{animation:dash .34s linear infinite}
+@keyframes dash{to{stroke-dashoffset:60}}
+.hw-hit #hw-player{animation:hwblink .15s steps(2,jump-none) 6}
+@keyframes hwblink{to{opacity:.15}}
+.blink{animation:blink .7s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .lane-a,.lane-b{animation:none}
-  .hint-hold{display:none}
+  .dash,.blink,.hw-hit #hw-player{animation:none}
 }
-.crossing-caption{
-  text-align:center;padding:1.3rem 1.4rem 1.5rem;color:var(--dim);font-weight:600;font-size:.95rem;
-}
-.crossing-caption b{color:var(--ink)}
+.hw-caption{text-align:center;padding:1.3rem 1.4rem 1.5rem;color:var(--dim);font-weight:600;font-size:.95rem}
+.hw-caption b{color:var(--ink)}
 
 /* scene fills that follow the theme */
 .sc-grass{fill:var(--grass)}.sc-grass2{fill:var(--grass-2)}
@@ -118,9 +141,40 @@ section{padding:4.2rem 0}
 .chip-steer{background:var(--grass)}
 .chip-brake{background:var(--coral)}
 .chip-cross{background:var(--coin)}
+.chip-median{background:repeating-linear-gradient(90deg,var(--yellow) 0 6px,var(--road) 6px 9px)}
 .beat h3{font-size:1.2rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.35rem}
 .beat p{font-size:.96rem;color:var(--dim);font-weight:500}
 .beat p b{color:var(--ink)}
+
+/* ------------------------------------------------ mode cards */
+.modes{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:1.8rem}
+@media (max-width:900px){.modes{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.modes{grid-template-columns:1fr}}
+.mode{
+  background:var(--panel);border:2px solid var(--road);border-radius:16px;padding:1.4rem 1.35rem;
+  box-shadow:5px 5px 0 var(--shadow);display:flex;flex-direction:column;gap:.35rem;position:relative;
+}
+.t-tag{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--coral)}
+.mode h3{font-size:1.12rem;font-weight:900;line-height:1.25;text-wrap:balance}
+.mode p{font-size:.94rem;color:var(--dim);font-weight:500}
+.mode p b{color:var(--ink)}
+.mode-board{margin-top:auto;padding-top:.9rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.mode-main{grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr;gap:1.6rem;align-items:center;padding:1.6rem 1.6rem}
+@media (max-width:760px){.mode-main{grid-template-columns:1fr}}
+.mode-main h3{font-size:clamp(1.3rem,2.6vw,1.6rem)}
+.mode-main .art{border:2px solid var(--road);border-radius:12px;overflow:hidden;background:var(--grass);aspect-ratio:600/340}
+.mode-main .art svg{display:block;width:100%;height:100%}
+.mode-main .col{display:flex;flex-direction:column;gap:.4rem}
+.mode-pack{background:var(--night);color:var(--night-ink);border-color:var(--coral)}
+.mode-pack .t-tag{color:var(--amber)}
+.mode-pack p{color:var(--night-dim)}
+.mode-pack p b{color:var(--night-ink)}
+.mode-pack .mode-board{color:var(--night-dim)}
+.stamp{
+  position:absolute;top:-.7rem;right:1rem;transform:rotate(-4deg);
+  font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--coral);color:#fff;padding:.3rem .6rem;border-radius:6px;box-shadow:3px 3px 0 var(--stamp);
+}
 
 /* ------------------------------------------------ rails (features + screenshots) */
 .rail{
@@ -134,15 +188,11 @@ section{padding:4.2rem 0}
   background:var(--panel);border:2px solid var(--road);border-radius:16px;padding:1.4rem 1.35rem;
   box-shadow:5px 5px 0 var(--shadow);
 }
-.tile .t-tag{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--coral)}
 .tile h3{font-size:1.12rem;font-weight:900;margin:.4rem 0 .35rem}
 .tile p{font-size:.94rem;color:var(--dim);font-weight:500}
 .tile p b{color:var(--ink)}
 
 /* screenshot frames */
-/* 193px, not 208: at 208 the four phones plus the watch column overran the 1080px wrap and the
-   last frame sat clipped at the desktop edge. The rail still scrolls (and must, on a phone, where
-   62vw wins), but a cut-off frame reads as a broken layout rather than as more content. */
 .shots .rail{--pw:min(62vw,193px);--stack-gap:1.2rem;align-items:flex-end}
 .frame{
   flex:0 0 auto;scroll-snap-align:center;position:relative;
@@ -150,20 +200,97 @@ section{padding:4.2rem 0}
 }
 .frame-phone{width:var(--pw);aspect-ratio:9/19.5;border-radius:28px}
 .frame-watch{border-radius:38px;aspect-ratio:410/502}
-/* Two watch shots stacked so the column reads as one item the same height as a phone. A single
-   short watch frame left the row visibly lopsided.
-   The width is DERIVED from the phone width rather than from the row: phone height is pw*19.5/9,
-   so each watch frame gets half of that minus the gap, converted back to a width through the
-   410x502 capture ratio. Stretching the column to the flex line instead is circular (the line's
-   cross size depends on the item, the item's width would depend on the line) and browsers
-   resolve it by blowing the frame up to the full rail width.  */
-.frame-stack{
-  flex:0 0 auto;scroll-snap-align:center;
-  display:flex;flex-direction:column;align-items:center;gap:var(--stack-gap);
-}
+.frame-stack{flex:0 0 auto;scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--stack-gap)}
 .frame-stack .frame-watch{width:calc((var(--pw) * 19.5 / 9 - var(--stack-gap)) / 2 * 410 / 502)}
 .frame img{display:block;width:100%;height:100%;object-fit:cover;border-radius:20px;background:var(--sky)}
 .frame-watch img{border-radius:28px}
+
+/* ------------------------------------------------ supporter pack (three treatments) */
+.pack{background:var(--panel);border:2px solid var(--road);border-radius:16px;box-shadow:5px 5px 0 var(--shadow);padding:1.8rem 1.6rem;margin-top:1.8rem}
+.pack-head{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:baseline;justify-content:space-between;margin-bottom:1.2rem}
+.price{font-family:var(--mono);font-weight:700;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;background:var(--coin);color:var(--coin-ink);padding:.45rem .8rem;border-radius:999px;white-space:nowrap}
+.pack-list{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem 1.4rem;list-style:none}
+@media (max-width:760px){.pack-list{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.pack-list{grid-template-columns:1fr}}
+.pack-list li{display:grid;grid-template-columns:1.4rem 1fr;gap:.7rem;align-items:start;font-size:.95rem;font-weight:500;color:var(--dim)}
+.pack-list li b{color:var(--ink);display:block}
+.pack-list .sq{width:1.4rem;height:1.4rem;border-radius:6px;border:2px solid var(--road);margin-top:.2rem}
+.pack-foot{margin-top:1.3rem;font-size:.9rem;color:var(--dim);font-weight:600}
+.pack-foot b{color:var(--ink)}
+
+.pack-band{background:var(--coin);color:var(--coin-ink);border-top:4px solid var(--road);border-bottom:4px solid var(--road);padding:3.2rem 1.4rem}
+.pack-band .eyebrow{color:var(--coin-ink);opacity:.7}
+.pack-band .sub{color:var(--coin-ink);opacity:.85}
+.pack-band-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:start}
+@media (max-width:760px){.pack-band-grid{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;list-style:none;margin-top:.4rem}
+.chips li{background:rgba(255,255,255,.55);border:2px solid var(--coin-ink);border-radius:999px;padding:.4rem .85rem;font-weight:800;font-size:.9rem;color:var(--coin-ink)}
+.chips li.lead{background:var(--coin-ink);color:var(--coin)}
+.bigprice{font-family:var(--mono);font-weight:700;font-size:clamp(2.2rem,6vw,3.4rem);line-height:1;letter-spacing:-.02em;color:var(--coin-ink)}
+.bigprice small{display:block;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;margin-top:.4rem;opacity:.75}
+
+.duo{display:grid;grid-template-columns:1.5fr 1fr;gap:1.6rem;align-items:start;margin-top:1.8rem}
+@media (max-width:820px){.duo{grid-template-columns:1fr}}
+.dossier{
+  background:var(--night);color:var(--night-ink);border:2px solid var(--coral);border-radius:16px;
+  box-shadow:5px 5px 0 var(--shadow);padding:1.8rem 1.7rem;position:relative;overflow:hidden;
+}
+.dossier .eyebrow{color:var(--amber)}
+.dossier h3{font-size:clamp(1.5rem,3.4vw,2rem);font-weight:900;margin:.45rem 0 .6rem;line-height:1.1}
+.dossier p{color:var(--night-dim);font-weight:500;max-width:52ch}
+.dossier p b{color:var(--night-ink)}
+.dossier ul{list-style:none;margin-top:1.1rem;display:grid;gap:.45rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--night-dim)}
+.dossier ul li::before{content:"";display:inline-block;width:.6rem;height:.6rem;background:var(--cyan);border-radius:2px;margin-right:.6rem;vertical-align:middle}
+.dossier .stamp{top:1.2rem;right:-1.2rem;transform:rotate(8deg);font-size:.66rem;padding:.4rem 2.4rem .4rem 1rem;border-radius:6px 0 0 6px}
+.receipt{
+  background:var(--paper);color:var(--ink);border:2px solid var(--road);border-radius:6px;
+  box-shadow:5px 5px 0 var(--shadow);padding:1.4rem 1.3rem;font-family:var(--mono);font-size:.82rem;line-height:1.7;
+}
+.receipt header{text-align:center;letter-spacing:.2em;text-transform:uppercase;font-weight:700;font-size:.7rem;color:var(--dim);border-bottom:2px dashed var(--line);padding-bottom:.7rem;margin-bottom:.7rem}
+.receipt header b{display:block;color:var(--ink);font-size:.86rem;letter-spacing:.14em}
+.receipt ul{list-style:none}
+.receipt li{display:flex;gap:.6rem;align-items:baseline}
+.receipt li span:first-child{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.receipt li span:first-child::after{content:" ................................................";letter-spacing:.1em;color:var(--line)}
+.receipt .total{border-top:2px dashed var(--line);margin-top:.7rem;padding-top:.7rem;display:flex;justify-content:space-between;font-weight:700;font-size:1rem}
+.receipt .fine{margin-top:.7rem;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);text-align:center}
+
+/* ------------------------------------------------ mockup 2 bar + lede */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.4rem;background:var(--sky)}
+.bar .wordmark{font-size:clamp(1.5rem,4vw,2rem);margin:0;text-shadow:3px 3px 0 var(--stamp)}
+.bar nav{display:flex;gap:1.2rem}
+.bar nav a{font-weight:800;text-decoration:none;color:var(--ink);font-size:.95rem}
+.bar nav a:hover{text-decoration:underline}
+@media (max-width:560px){.bar nav{display:none}}
+.lede{background:linear-gradient(180deg,var(--sky-2),var(--page));padding:3.2rem 1.4rem 2.6rem}
+.lede-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:2.4rem;align-items:start;max-width:1080px;margin:0 auto}
+@media (max-width:760px){.lede-grid{grid-template-columns:1fr;gap:1.4rem}}
+.lede-h{font-size:clamp(2rem,4.8vw,3.1rem);font-weight:900;line-height:1.02;letter-spacing:.005em;text-wrap:balance}
+.lede .cta{align-items:flex-start;margin-top:1rem}
+.lede .store-badge{margin:0 0 .4rem}
+.roads{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(0,auto);gap:1.2rem;margin-top:1.8rem}
+@media (max-width:900px){.roads{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.roads{grid-template-columns:1fr}}
+.road-hw{grid-column:span 2;grid-row:span 2}
+@media (max-width:560px){.road-hw{grid-column:auto;grid-row:auto}}
+.road-hw .art{border:2px solid var(--road);border-radius:12px;overflow:hidden;background:var(--grass);aspect-ratio:600/300;margin-bottom:.6rem}
+.road-hw .art svg{display:block;width:100%;height:100%}
+.road-hw h3{font-size:clamp(1.3rem,2.6vw,1.6rem)}
+
+/* ------------------------------------------------ mockup 3 stages */
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.8rem}
+@media (max-width:760px){.stages{grid-template-columns:1fr}}
+.stage .art{border:2px solid var(--road);border-radius:12px;overflow:hidden;background:var(--grass);aspect-ratio:600/300;box-shadow:5px 5px 0 var(--shadow)}
+.stage .art svg{display:block;width:100%;height:100%}
+.stage .t-tag{display:block;margin:1rem 0 .2rem;color:var(--dim)}
+.stage h3{font-size:1.1rem;font-weight:900}
+.stage p{font-size:.94rem;color:var(--dim);font-weight:500}
+.stage p b{color:var(--ink)}
+.also{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.4rem}
+@media (max-width:760px){.also{grid-template-columns:1fr}}
+.also div{border-top:3px solid var(--road);padding-top:.8rem}
+.also h3{font-size:1.05rem;font-weight:900}
+.also p{font-size:.92rem;color:var(--dim);font-weight:500}
 
 /* ------------------------------------------------ privacy band */
 .promise{background:var(--grass);border-top:4px solid var(--road);border-bottom:4px solid var(--road);text-align:center;padding:3.2rem 1.4rem}
@@ -182,13 +309,11 @@ footer nav a:hover{text-decoration:underline}
 </head>
 <body>
 
-<!-- ================= hero ================= -->
 <header class="hero">
   <p class="eyebrow">A Satoru Labs game</p>
   <h1 class="wordmark">DRIVEY&nbsp;CAR!</h1>
-  <p class="killer">Red lights can't stop you. Trains can.</p>
-  <p class="subline">The car handles the gas. It always wants to go. You thread the traffic,
-  hold the brake when the road forces it, and let go at exactly the right moment.</p>
+  <p class="killer">Cross the median to overtake.</p>
+  <p class="subline">The car handles the gas. You steer across eight lanes, and when your side jams, the fast way past is over the double yellow. <b>Get back before the gap closes.</b></p>
   <div class="cta">
     <a class="store-badge" href="https://apps.apple.com/app/id6791788958" aria-label="Download on the App Store">
       <span class="badge-light"><svg id="appstore-badge-blk" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="119.66407" height="40" viewBox="0 0 119.66407 40">
@@ -286,232 +411,176 @@ footer nav a:hover{text-decoration:underline}
   </div>
 </header>
 
-<!-- ================= the crossing (hold to brake) ================= -->
-<div class="crossing-zone">
-  <button class="crossing" type="button"
-          aria-label="Hold to brake: pressing and holding pauses the crossing traffic animation">
-    <span class="hint hint-hold" aria-hidden="true">Hold anywhere to brake</span>
-    <span class="hint hint-go" aria-hidden="true">Held. Now pick your gap</span>
+<div class="hw-zone">
+  <div class="hw" tabindex="0" role="application"
+       aria-label="Interactive highway. Drag, tilt, or use the arrow keys to steer the red car across eight lanes. Crossing the double yellow line puts you in oncoming traffic.">
+    <span class="hint hw-hint" aria-live="polite">Drag or tilt to steer</span>
+    <span class="hud hud-score" aria-hidden="true"><b id="hw-score">0</b></span>
+    <span class="hud hud-lives" aria-hidden="true"><i></i><i></i><i></i></span>
+    <button class="hw-tilt" type="button" hidden aria-pressed="false">Tilt</button>
     <svg viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-      <!-- grass field with big soft checker -->
       <rect class="sc-grass" x="0" y="0" width="1200" height="340"/>
       <g class="sc-grass2">
-        <rect x="0" y="0" width="120" height="55"/><rect x="240" y="0" width="120" height="55"/>
-        <rect x="480" y="0" width="120" height="55"/><rect x="720" y="0" width="120" height="55"/>
-        <rect x="960" y="0" width="120" height="55"/><rect x="1200" y="0" width="120" height="55"/>
-        <rect x="120" y="55" width="120" height="55"/><rect x="360" y="55" width="120" height="55"/>
-        <rect x="600" y="55" width="120" height="55"/><rect x="840" y="55" width="120" height="55"/>
-        <rect x="1080" y="55" width="120" height="55"/>
-        <rect x="0" y="230" width="120" height="55"/><rect x="240" y="230" width="120" height="55"/>
-        <rect x="480" y="230" width="120" height="55"/><rect x="720" y="230" width="120" height="55"/>
-        <rect x="960" y="230" width="120" height="55"/>
-        <rect x="120" y="285" width="120" height="55"/><rect x="360" y="285" width="120" height="55"/>
-        <rect x="600" y="285" width="120" height="55"/><rect x="840" y="285" width="120" height="55"/>
-        <rect x="1080" y="285" width="120" height="55"/>
+        <rect x="0" y="0" width="120" height="24"/><rect x="240" y="0" width="120" height="24"/>
+        <rect x="480" y="0" width="120" height="24"/><rect x="720" y="0" width="120" height="24"/>
+        <rect x="960" y="0" width="120" height="24"/>
+        <rect x="120" y="316" width="120" height="24"/><rect x="360" y="316" width="120" height="24"/>
+        <rect x="600" y="316" width="120" height="24"/><rect x="840" y="316" width="120" height="24"/>
+        <rect x="1080" y="316" width="120" height="24"/>
       </g>
-
-      <!-- the player's vertical road -->
-      <rect class="sc-road" x="560" y="0" width="80" height="340"/>
-      <rect class="sc-road2" x="560" y="0" width="6" height="340"/>
-      <rect class="sc-road3" x="634" y="0" width="6" height="340"/>
-      <g fill="#FFE9A8">
-        <rect x="598" y="8" width="4" height="18"/><rect x="598" y="44" width="4" height="18"/>
-        <rect x="598" y="80" width="4" height="18"/>
-        <rect x="598" y="244" width="4" height="18"/><rect x="598" y="280" width="4" height="18"/>
-        <rect x="598" y="316" width="4" height="18"/>
+      <rect class="sc-road" x="0" y="24" width="1200" height="292"/>
+      <rect class="sc-road2" x="0" y="24" width="1200" height="5"/>
+      <rect class="sc-road3" x="0" y="311" width="1200" height="5"/>
+      <rect x="0" y="30" width="1200" height="3" fill="#F4F6F8"/>
+      <rect x="0" y="307" width="1200" height="3" fill="#F4F6F8"/>
+      <line class="dash" x1="0" x2="1200" y1="58" y2="58" stroke="#FFE9A8" stroke-width="3" stroke-dasharray="26 34"/><line class="dash" x1="0" x2="1200" y1="92" y2="92" stroke="#FFE9A8" stroke-width="3" stroke-dasharray="26 34"/><line class="dash" x1="0" x2="1200" y1="126" y2="126" stroke="#FFE9A8" stroke-width="3" stroke-dasharray="26 34"/><line class="dash" x1="0" x2="1200" y1="214" y2="214" stroke="#FFE9A8" stroke-width="3" stroke-dasharray="26 34"/><line class="dash" x1="0" x2="1200" y1="248" y2="248" stroke="#FFE9A8" stroke-width="3" stroke-dasharray="26 34"/><line class="dash" x1="0" x2="1200" y1="282" y2="282" stroke="#FFE9A8" stroke-width="3" stroke-dasharray="26 34"/>
+      <rect x="0" y="165" width="1200" height="3" fill="#F2C230"/>
+      <rect x="0" y="172" width="1200" height="3" fill="#F2C230"/>
+      <g id="hw-traffic"></g>
+      <g id="hw-player" transform="translate(560,218)">
+        <polygon points="0,0 8,-8 74,-8 66,0" fill="#FF7A6E"/>
+        <rect width="74" height="26" rx="6" fill="#FF5A4E"/>
+        <rect x="50" y="5" width="14" height="16" rx="2" fill="#FFE1DC"/>
+        <rect x="6" y="23" width="12" height="6" rx="2" fill="#2C333C"/>
+        <rect x="56" y="23" width="12" height="6" rx="2" fill="#2C333C"/>
       </g>
-
-      <!-- a coin waiting on the far side -->
-      <g>
-        <rect x="587" y="46" width="26" height="18" rx="4" fill="#FFC93C"/>
-        <polygon points="587,46 592,41 618,41 613,46" fill="#FFE08A"/>
-        <rect x="594" y="51" width="12" height="8" fill="#B98A16"/>
-      </g>
-
-      <!-- trees -->
-      <g>
-        <rect x="152" y="292" width="11" height="16" fill="#7A5230"/>
-        <rect x="140" y="270" width="34" height="28" rx="6" fill="#4FA33B"/>
-        <polygon points="140,270 147,263 181,263 174,270" fill="#6DC257"/>
-      </g>
-      <g>
-        <rect x="986" y="60" width="10" height="14" fill="#7A5230"/>
-        <rect x="976" y="40" width="30" height="25" rx="5" fill="#4FA33B"/>
-        <polygon points="976,40 982,34 1012,34 1006,40" fill="#6DC257"/>
-      </g>
-
-      <!-- the crossing road -->
-      <rect class="sc-road" x="0" y="112" width="1200" height="118"/>
-      <rect class="sc-road2" x="0" y="112" width="1200" height="6"/>
-      <rect class="sc-road3" x="0" y="224" width="1200" height="6"/>
-      <g fill="#FFE9A8">
-        <rect x="10" y="169" width="26" height="4"/><rect x="70" y="169" width="26" height="4"/>
-        <rect x="130" y="169" width="26" height="4"/><rect x="190" y="169" width="26" height="4"/>
-        <rect x="250" y="169" width="26" height="4"/><rect x="310" y="169" width="26" height="4"/>
-        <rect x="370" y="169" width="26" height="4"/><rect x="430" y="169" width="26" height="4"/>
-        <rect x="490" y="169" width="26" height="4"/><rect x="550" y="169" width="26" height="4"/>
-        <rect x="610" y="169" width="26" height="4"/><rect x="670" y="169" width="26" height="4"/>
-        <rect x="730" y="169" width="26" height="4"/><rect x="790" y="169" width="26" height="4"/>
-        <rect x="850" y="169" width="26" height="4"/><rect x="910" y="169" width="26" height="4"/>
-        <rect x="970" y="169" width="26" height="4"/><rect x="1030" y="169" width="26" height="4"/>
-        <rect x="1090" y="169" width="26" height="4"/><rect x="1150" y="169" width="26" height="4"/>
-      </g>
-
-      <!-- lane A: traffic sliding left (period 1500, pattern laid twice) -->
-      <g class="lane-a">
-        <!-- pattern @ 0 -->
-        <g><rect x="20" y="122" width="110" height="42" rx="8" fill="#FFC93C"/>
-           <polygon points="20,122 30,112 140,112 130,122" fill="#FFD766"/>
-           <rect x="42" y="130" width="60" height="15" fill="#FFF0C4"/></g>
-        <g><rect x="250" y="122" width="110" height="42" rx="8" fill="#3E7CB1"/>
-           <polygon points="250,122 260,112 370,112 360,122" fill="#5A97C9"/>
-           <rect x="272" y="130" width="60" height="15" fill="#CFE8FA"/></g>
-        <g><rect x="790" y="122" width="110" height="42" rx="8" fill="#7B61FF"/>
-           <polygon points="790,122 800,112 910,112 900,122" fill="#9A86FF"/>
-           <rect x="812" y="130" width="60" height="15" fill="#DDD6FF"/></g>
-        <g><rect x="1010" y="122" width="110" height="42" rx="8" fill="#4FA33B"/>
-           <polygon points="1010,122 1020,112 1130,112 1120,122" fill="#6DC257"/>
-           <rect x="1032" y="130" width="60" height="15" fill="#DCF2D0"/></g>
-        <g><rect x="1260" y="122" width="110" height="42" rx="8" fill="#3E7CB1"/>
-           <polygon points="1260,122 1270,112 1380,112 1370,122" fill="#5A97C9"/>
-           <rect x="1282" y="130" width="60" height="15" fill="#CFE8FA"/></g>
-        <!-- pattern @ +1500 -->
-        <g><rect x="1520" y="122" width="110" height="42" rx="8" fill="#FFC93C"/>
-           <polygon points="1520,122 1530,112 1640,112 1630,122" fill="#FFD766"/>
-           <rect x="1542" y="130" width="60" height="15" fill="#FFF0C4"/></g>
-        <g><rect x="1750" y="122" width="110" height="42" rx="8" fill="#3E7CB1"/>
-           <polygon points="1750,122 1760,112 1870,112 1860,122" fill="#5A97C9"/>
-           <rect x="1772" y="130" width="60" height="15" fill="#CFE8FA"/></g>
-        <g><rect x="2290" y="122" width="110" height="42" rx="8" fill="#7B61FF"/>
-           <polygon points="2290,122 2300,112 2410,112 2400,122" fill="#9A86FF"/>
-           <rect x="2312" y="130" width="60" height="15" fill="#DDD6FF"/></g>
-        <g><rect x="2510" y="122" width="110" height="42" rx="8" fill="#4FA33B"/>
-           <polygon points="2510,122 2520,112 2630,112 2620,122" fill="#6DC257"/>
-           <rect x="2532" y="130" width="60" height="15" fill="#DCF2D0"/></g>
-        <g><rect x="2760" y="122" width="110" height="42" rx="8" fill="#3E7CB1"/>
-           <polygon points="2760,122 2770,112 2880,112 2870,122" fill="#5A97C9"/>
-           <rect x="2782" y="130" width="60" height="15" fill="#CFE8FA"/></g>
-      </g>
-
-      <!-- lane B: traffic sliding right (period 1500, pattern laid at 0 and -1500) -->
-      <g class="lane-b">
-        <!-- pattern @ 0 -->
-        <g><rect x="90" y="178" width="110" height="42" rx="8" fill="#7B61FF"/>
-           <polygon points="90,178 100,168 210,168 200,178" fill="#9A86FF"/>
-           <rect x="112" y="186" width="60" height="15" fill="#DDD6FF"/></g>
-        <g><rect x="330" y="178" width="110" height="42" rx="8" fill="#4FA33B"/>
-           <polygon points="330,178 340,168 450,168 440,178" fill="#6DC257"/>
-           <rect x="352" y="186" width="60" height="15" fill="#DCF2D0"/></g>
-        <g><rect x="850" y="178" width="110" height="42" rx="8" fill="#FFC93C"/>
-           <polygon points="850,178 860,168 970,168 960,178" fill="#FFD766"/>
-           <rect x="872" y="186" width="60" height="15" fill="#FFF0C4"/></g>
-        <g><rect x="1120" y="178" width="110" height="42" rx="8" fill="#3E7CB1"/>
-           <polygon points="1120,178 1130,168 1240,168 1230,178" fill="#5A97C9"/>
-           <rect x="1142" y="186" width="60" height="15" fill="#CFE8FA"/></g>
-        <!-- pattern @ -1500 -->
-        <g><rect x="-1410" y="178" width="110" height="42" rx="8" fill="#7B61FF"/>
-           <polygon points="-1410,178 -1400,168 -1290,168 -1300,178" fill="#9A86FF"/>
-           <rect x="-1388" y="186" width="60" height="15" fill="#DDD6FF"/></g>
-        <g><rect x="-1170" y="178" width="110" height="42" rx="8" fill="#4FA33B"/>
-           <polygon points="-1170,178 -1160,168 -1050,168 -1060,178" fill="#6DC257"/>
-           <rect x="-1148" y="186" width="60" height="15" fill="#DCF2D0"/></g>
-        <g><rect x="-650" y="178" width="110" height="42" rx="8" fill="#FFC93C"/>
-           <polygon points="-650,178 -640,168 -530,168 -540,178" fill="#FFD766"/>
-           <rect x="-628" y="186" width="60" height="15" fill="#FFF0C4"/></g>
-        <g><rect x="-380" y="178" width="110" height="42" rx="8" fill="#3E7CB1"/>
-           <polygon points="-380,178 -370,168 -260,168 -270,178" fill="#5A97C9"/>
-           <rect x="-358" y="186" width="60" height="15" fill="#CFE8FA"/></g>
-      </g>
-
-      <!-- the player, held at the edge -->
-      <g>
-        <rect x="573" y="252" width="54" height="66" rx="8" fill="#FF5A4E"/>
-        <polygon points="573,252 583,242 637,242 627,252" fill="#FF7A6E"/>
-        <rect x="583" y="262" width="34" height="14" rx="3" fill="#FFE1DC"/>
-        <rect x="578" y="308" width="11" height="8" rx="2" fill="#2C333C"/>
-        <rect x="611" y="308" width="11" height="8" rx="2" fill="#2C333C"/>
+      <g id="hw-chip" opacity="0">
+        <rect x="-72" y="-48" width="144" height="26" rx="13" fill="#1B2430"/>
+        <text x="0" y="-30" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="13" font-weight="700" letter-spacing="1" fill="#63E6F5">NEAR MISS ×2</text>
       </g>
     </svg>
-  </button>
-  <p class="crossing-caption"><b>That's the brake.</b> You only get the one pedal. Spend it on
-  trains and crossing traffic, never on red lights.</p>
+  </div>
+  <p class="hw-caption"><b>That&rsquo;s the overtake.</b> Your side crawls, the other side flies. Cross, pass, and find your way back.</p>
 </div>
 
-<!-- ================= how it plays ================= -->
 <section id="how">
   <div class="wrap">
     <p class="eyebrow">How it plays</p>
     <h2>Three verbs. One held breath.</h2>
-    <p class="sub">The car handles the gas, always. Everything you do fits in one hand,
-    or on one wrist.</p>
+    <p class="sub">The car handles the gas, always. Everything you do fits in one hand, or on one wrist.</p>
     <div class="beats">
       <div class="beat">
         <span class="chip chip-steer" aria-hidden="true"></span>
         <h3>Steer</h3>
-        <p>Slide left and right to pick your line: <b>the lane with the coins</b>, or the gap in
-        the trees.</p>
+        <p>Drag or tilt to pick your line. Slide across lanes for the coins, <b>or over the median</b> when your side jams.</p>
+      </div>
+      <div class="beat">
+        <span class="chip chip-median" aria-hidden="true"></span>
+        <h3>Overtake</h3>
+        <p>Oncoming traffic is the fast way past. <b>Cross, pass, get back</b> before the gap closes.</p>
       </div>
       <div class="beat">
         <span class="chip chip-brake" aria-hidden="true"></span>
         <h3>Brake</h3>
-        <p>Traffic pours across your path. <b>Hold</b>, and your car plants itself at the edge
-        while the wall of cars rolls by.</p>
-      </div>
-      <div class="beat">
-        <span class="chip chip-cross" aria-hidden="true"></span>
-        <h3>Cross</h3>
-        <p>A gap opens. <b>Let go</b> and be across before the train comes through.</p>
+        <p>You only get the one pedal. <b>Hold</b> for trains and crossing traffic, never for a red light.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= features ================= -->
-<section id="features" style="padding-top:0">
+<section id="modes" class="tight">
+  <div class="wrap">
+    <p class="eyebrow">Ways to drive</p>
+    <h2>Highway is the main event. Three more come free.</h2>
+    <p class="sub">Every mode keeps its own worldwide board. Scores from iPhone, iPad and Apple&nbsp;Watch land on the same one.</p>
+    <div class="modes">
+      <div class="mode mode-main">
+        <div class="col">
+  <span class="t-tag">Highway · The main event</span>
+  <h3>Eight lanes. Cross the median to overtake.</h3>
+  <p>Your side jams, the other side has a gap. Take it. Highway never settles down: the lanes fill in, the pace
+  lifts, and deep in a run the traffic starts changing lanes. <b>Watch for the amber blinker.</b></p>
+  <p class="mode-board">Own worldwide board · iPhone, iPad, Apple Watch</p>
+</div>
+        <div class="art"><svg data-hw="dense" data-seed="11" aria-hidden="true" focusable="false"></svg></div>
+      </div>
+      
+<div class="mode">
+  <span class="t-tag">Crossings</span>
+  <h3>The gauntlet</h3>
+  <p>Cross road after cross road. <b>Hold to brake</b> at the edge, let go into the gap, and never stop for a red light. Trains are another matter.</p>
+  <p class="mode-board">Own worldwide board</p>
+</div>
+
+<div class="mode">
+  <span class="t-tag">Two-Way</span>
+  <h3>One lane each way</h3>
+  <p>An undivided country road. The only way past a slow truck is <b>the oncoming lane</b>, and something is always coming.</p>
+  <p class="mode-board">Own worldwide board</p>
+</div>
+
+<div class="mode">
+  <span class="t-tag">Daily Run</span>
+  <h3>Same road for everyone</h3>
+  <p>One shared course a day, worldwide, on a 24-hour board. <b>Your watch can outrank somebody's iPad.</b></p>
+  <p class="mode-board">Shared daily board</p>
+</div>
+
+<div class="mode mode-pack">
+  <span class="stamp" aria-hidden="true">Supporter Pack</span>
+  <span class="t-tag">Secret Agent Pursuer</span>
+  <h3>Take the rival agents off the road</h3>
+  <p>Oil slicks, spy gadgetry, civilians to mind, and the Department's ranks to climb. It ramps up the way Highway does,
+  with its own board and its own soundtrack: <b>Pursuit Directive</b> runs the whole way.</p>
+  <p class="mode-board">Own worldwide board · iPhone and iPad</p>
+</div>
+
+    </div>
+  </div>
+</section>
+
+<section id="pack" class="tight">
+  <div class="wrap">
+    <p class="eyebrow">Supporter Pack</p>
+    <h2>One tip, once. Everything else stays free.</h2>
+    <p class="sub">The pack tips a solo developer and unlocks the extras. It never touches score or fairness,
+    and coins are never for sale.</p>
+    <div class="pack">
+      <div class="pack-head">
+        <h3 style="font-size:1.2rem;font-weight:900">What is in it</h3>
+        <span class="price">$2.99 · one time · no subscription</span>
+      </div>
+      <ul class="pack-list"><li><span class="sq" style="background:var(--night)" aria-hidden="true"></span><span><b>Secret Agent Pursuer</b>A whole pursuit mode, iPhone and iPad.</span></li><li><span class="sq" style="background:var(--coral)" aria-hidden="true"></span><span><b>Four premium cars</b>On top of the four you earn with coins.</span></li><li><span class="sq" style="background:var(--coin)" aria-hidden="true"></span><span><b>Coin doubler</b>The garage fills twice as fast.</span></li><li><span class="sq" style="background:var(--grass)" aria-hidden="true"></span><span><b>Five bonus soundtracks</b>Seven originals in all. Two are free.</span></li><li><span class="sq" style="background:var(--yellow)" aria-hidden="true"></span><span><b>A horn</b>It does nothing. It is great.</span></li></ul>
+      <p class="pack-foot"><b>Optional in every sense.</b> Three driving modes, the Daily Run, the garage and every leaderboard are free before you spend a cent.</p>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="tight">
   <div class="wrap">
     <p class="eyebrow">What you get</p>
     <h2>Free to play. No ads, no accounts.</h2>
     <div class="rail" tabindex="0" aria-label="Feature list, scrolls horizontally">
       <div class="tile">
-        <span class="t-tag">Highway</span>
-        <h3>It keeps getting harder</h3>
-        <p>Highway never settles down. Drive far enough and the lanes fill in, the pace lifts,
-        and shields and spare lives get scarce. Deep in a run the traffic starts merging.
-        <b>Watch for the amber blinker</b> and take the gap.</p>
-      </div>
-      <div class="tile">
         <span class="t-tag">Garage</span>
         <h3>Eight voxel cars</h3>
-        <p>Coins you pick up on the road bank toward the next car in the garage. <b>One yours from
-        the start, three more on coins alone</b>, four in the Supporter Pack. Coins are never for
-        sale.</p>
+        <p>Coins you pick up on the road bank toward the next car. <b>One yours from the start, three more on coins alone</b>, four in the Supporter Pack.</p>
+      </div>
+      <div class="tile">
+        <span class="t-tag">Worlds</span>
+        <h3>Countryside to rust belt, then dark</h3>
+        <p>The world changes as you drive: fields, snow, a rusted-out dystopia deep in a run, and night. <b>Night is for everyone.</b> It makes the game harder, so it was never going to be for sale.</p>
       </div>
       <div class="tile">
         <span class="t-tag">Apple Watch</span>
         <h3>A real game on your wrist</h3>
-        <p>The Watch app stands on its own: <b>steer with the Digital&nbsp;Crown</b>, press and
-        hold to brake. No iPhone required.</p>
+        <p>The Watch app stands on its own: <b>steer with the Digital&nbsp;Crown</b> or a tilt, press and hold to brake. No iPhone required.</p>
       </div>
       <div class="tile">
         <span class="t-tag">Game Center</span>
         <h3>Every mode, its own board</h3>
-        <p>Each way to drive keeps its own worldwide board, plus a shared daily one. Scores from
-        every device land on the same boards, so <b>your watch can outrank somebody's iPad.</b>
-        Optional, off until you sign in.</p>
+        <p>Five worldwide boards: one per mode, plus the shared daily one. Scores from every device land together. Optional, off until you sign in.</p>
       </div>
       <div class="tile">
         <span class="t-tag">Free means free</span>
         <h3>Nobody watching, nothing required</h3>
-        <p><b>No ads, no accounts, no analytics</b>, ever. Three ways to drive, the daily run and
-        the garage cost nothing. One optional <b>Supporter Pack</b> tips the developer and adds a
-        bonus mode, four more cars and a night world.</p>
+        <p><b>No ads, no accounts, no analytics</b>, ever. The App Store privacy label says Data Not Collected, and it is literal.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= screenshots ================= -->
-<section id="screens" class="shots" style="padding-top:0">
+<section id="screens" class="shots tight">
   <div class="wrap">
     <p class="eyebrow">Screenshots</p>
     <h2>Straight from the game.</h2>
@@ -535,19 +604,18 @@ footer nav a:hover{text-decoration:underline}
       </div>
       <div class="frame-stack">
         <div class="frame frame-watch">
-          <img src="press/watch-ultra49-01-crown-steer-gameplay.png" width="410" height="502"
-               loading="lazy" alt="Apple Watch: a run on the wrist, a truck crossing the road ahead, coins and the score on screen">
-        </div>
-        <div class="frame frame-watch">
           <img src="press/watch-ultra49-02-highway.png" width="410" height="502"
                loading="lazy" alt="Apple Watch: a highway run, traffic in both directions and the score above the road">
+        </div>
+        <div class="frame frame-watch">
+          <img src="press/watch-ultra49-01-crown-steer-gameplay.png" width="410" height="502"
+               loading="lazy" alt="Apple Watch: a run on the wrist, a truck crossing the road ahead, coins and the score on screen">
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= privacy band ================= -->
 <section class="promise" aria-label="Our promise">
   <p class="big">No ads. No accounts. No tracking. <span>Just drive.</span></p>
   <p class="small">Apple handles the store and the leaderboards.
@@ -568,8 +636,166 @@ footer nav a:hover{text-decoration:underline}
 </footer>
 
 <script>
-/* Enables :active (the hold-to-brake pause) on iOS touch. No data, no network. */
-document.addEventListener('touchstart',function(){},{passive:true});
+/* The highway: drag, tilt, or arrow keys. Runs only while on screen. No data, no network. */
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var LANES=[24,58,92,126,180,214,248,282], LANE_H=34, CAR_H=26, CAR_W=74;
+  var ROAD_TOP=24, ROAD_BOT=316, MED=170, VW=1200, VH=340;
+  var PAL=[['#FFC93C','#FFD766','#FFF0C4'],['#3E7CB1','#5A97C9','#CFE8FA'],['#7B61FF','#9A86FF','#DDD6FF'],
+           ['#4FA33B','#6DC257','#DCF2D0'],['#EDF0F3','#FFFFFF','#CFDCE6']];
+  var reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function car(w,h,c,dir){
+    var g=el('g',{});
+    g.appendChild(el('polygon',{points:'0,0 8,-8 '+w+',-8 '+(w-8)+',0',fill:c[1]}));
+    g.appendChild(el('rect',{x:0,y:0,width:w,height:h,rx:6,fill:c[0]}));
+    g.appendChild(el('rect',{x:dir>0?w-24:10,y:5,width:14,height:h-10,rx:2,fill:c[2]}));
+    g.appendChild(el('rect',{x:6,y:h-3,width:12,height:6,rx:2,fill:'#2C333C'}));
+    g.appendChild(el('rect',{x:w-18,y:h-3,width:12,height:6,rx:2,fill:'#2C333C'}));
+    return g;
+  }
+  function seeded(s){return function(){s|=0;s=s+0x6D2B79F5|0;var t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+
+  /* ---- static panels (mode card art, the three stages) ---- */
+  function staticPanel(svg){
+    var mode=svg.getAttribute('data-hw'), rnd=seeded(+svg.getAttribute('data-seed')||7), W=600;
+    svg.setAttribute('viewBox','0 0 '+W+' '+VH); svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+    var g=el('g',{});
+    g.appendChild(el('rect',{x:0,y:0,width:W,height:VH,'class':'sc-grass'}));
+    for(var i=0;i<W;i+=240){g.appendChild(el('rect',{x:i,y:0,width:120,height:24,'class':'sc-grass2'}));g.appendChild(el('rect',{x:i+120,y:316,width:120,height:24,'class':'sc-grass2'}));}
+    g.appendChild(el('rect',{x:0,y:24,width:W,height:292,'class':'sc-road'}));
+    g.appendChild(el('rect',{x:0,y:30,width:W,height:3,fill:'#F4F6F8'}));g.appendChild(el('rect',{x:0,y:307,width:W,height:3,fill:'#F4F6F8'}));
+    [58,92,126,214,248,282].forEach(function(y){g.appendChild(el('line',{x1:0,x2:W,y1:y,y2:y,stroke:'#FFE9A8','stroke-width':3,'stroke-dasharray':'26 34'}));});
+    g.appendChild(el('rect',{x:0,y:165,width:W,height:3,fill:'#F2C230'}));g.appendChild(el('rect',{x:0,y:172,width:W,height:3,fill:'#F2C230'}));
+    var per=mode==='light'?[0,1,0,1,1,0,1,0]:mode==='dense'?[2,2,3,2,2,1,3,2]:[3,2,3,2,2,2,3,2];
+    per.forEach(function(n,l){
+      var x=rnd()*120;
+      for(var k=0;k<n;k++){
+        x+=rnd()*(mode==='light'?260:120)+(mode==='light'?60:20);
+        if(l===5&&x>150&&x<360) x=360;
+        if(x>W-40) return;
+        var truck=rnd()<.18, w=truck?100:CAR_W, c=truck?PAL[4]:PAL[(rnd()*4)|0];
+        var cg=car(w,CAR_H,c,l<4?-1:1); cg.setAttribute('transform','translate('+x.toFixed(0)+','+(LANES[l]+4)+')'); g.appendChild(cg);
+        x+=w;
+      }
+    });
+    if(mode==='merge'){
+      var mg=car(CAR_W,CAR_H,PAL[1],1);
+      mg.setAttribute('transform','translate(392,'+(LANES[5]+4)+') rotate(-9)');
+      mg.appendChild(el('rect',{x:CAR_W-6,y:-2,width:8,height:8,rx:2,fill:'#FFB020','class':'blink'}));
+      g.appendChild(mg);
+    }
+    var p=car(CAR_W,CAR_H,['#FF5A4E','#FF7A6E','#FFE1DC'],1); p.setAttribute('transform','translate(250,'+(LANES[5]+4)+')'); g.appendChild(p);
+    svg.appendChild(g);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('svg[data-hw]'),staticPanel);
+
+  /* ---- the live scene ---- */
+  var root=document.querySelector('.hw'); if(!root) return;
+  var svg=root.querySelector('svg'), traffic=svg.querySelector('#hw-traffic'), player=svg.querySelector('#hw-player');
+  var chip=svg.querySelector('#hw-chip'), chipText=chip.querySelector('text');
+  var hint=root.querySelector('.hw-hint'), scoreEl=root.querySelector('#hw-score'), livesEl=root.querySelectorAll('.hud-lives i'), tiltBtn=root.querySelector('.hw-tilt');
+  var SPEED=[250,275,300,330,40,65,90,115];
+  var cars=[], lanes=[], rnd=Math.random;
+  var px=560, py=218, target=218, score=0, shown=-1, lives=3, invuln=0, chain=0, chainT=0, chipT=0, hitT=0;
+  var running=false, onScreen=true, last=0, touched=false, lastInput=-1e9, dragging=false, startY=0, startTarget=0, tiltOn=false;
+
+  function gap(l){return l<4?200+rnd()*380:150+rnd()*330;}
+  function place(o){o.g.setAttribute('transform','translate('+o.x.toFixed(1)+','+o.y+')');}
+  function spawn(l,x){
+    var truck=rnd()<.18, w=truck?100:CAR_W, c=truck?PAL[4]:PAL[(rnd()*4)|0];
+    var o={x:x,y:LANES[l]+4,w:w,lane:l,v:SPEED[l],g:car(w,CAR_H,c,l<4?-1:1),passed:false};
+    traffic.appendChild(o.g); cars.push(o); place(o); return o;
+  }
+  for(var l=0;l<8;l++){
+    var x=rnd()*400-100;
+    while(x<VW+80){
+      if(l===5&&x>300&&x<840){x=840;}
+      var o=spawn(l,x); x+=o.w+gap(l);
+    }
+    lanes.push({next:x});
+  }
+
+  function clamp(y){return Math.max(ROAD_TOP+4,Math.min(ROAD_BOT-CAR_H-4,y));}
+  function setHint(s){if(hint.textContent!==s)hint.textContent=s;}
+  function drawLives(){for(var i=0;i<livesEl.length;i++)livesEl[i].classList.toggle('lost',i>=lives);}
+  function interact(){touched=true;lastInput=performance.now();}
+  function nearMiss(){chain++;chainT=2;chipT=1.2;chipText.textContent='NEAR MISS ×'+chain;chip.setAttribute('opacity','1');}
+  function hit(o,i){
+    traffic.removeChild(o.g);cars.splice(i,1);
+    lives--;invuln=1.4;chain=0;chip.setAttribute('opacity','0');
+    root.classList.add('hw-hit');setTimeout(function(){root.classList.remove('hw-hit');},900);
+    if(lives<=0){setHint('Out of lives. Instant retry.');hitT=1.6;lives=3;score=0;}
+    else{setHint('Clipped. Three lives a run.');hitT=1.4;}
+    drawLives();
+  }
+
+  function step(dt){
+    if(reduced&&performance.now()-lastInput>3000)dt=0;
+    py+=(target-py)*Math.min(1,dt*12);
+    player.setAttribute('transform','translate('+px+','+py.toFixed(1)+')');
+    var onc=py+CAR_H/2<MED;
+    score+=dt*(onc?120:60);
+    if(invuln>0)invuln-=dt;
+    for(var i=cars.length-1;i>=0;i--){
+      var o=cars[i];o.x-=o.v*dt;
+      if(o.x+o.w<-20){traffic.removeChild(o.g);cars.splice(i,1);continue;}
+      place(o);
+      var dy=Math.abs(o.y-py), overlapX=o.x<px+CAR_W-6&&o.x+o.w>px+6;
+      if(dt>0&&overlapX&&dy<CAR_H-4&&invuln<=0){hit(o,i);continue;}
+      if(!o.passed&&o.x+o.w<px){o.passed=true;if(dt>0&&dy>=CAR_H-4&&dy<(o.lane<4?LANE_H+8:LANE_H*.8))nearMiss();}
+    }
+    for(var l=0;l<8;l++){var L=lanes[l];L.next-=SPEED[l]*dt;if(L.next<VW+80){var n=spawn(l,L.next);L.next+=n.w+gap(l);}}
+    if(chainT>0){chainT-=dt;if(chainT<=0)chain=0;}
+    if(chipT>0){chipT-=dt;if(chipT<=0)chip.setAttribute('opacity','0');else chip.setAttribute('transform','translate('+(px+CAR_W/2)+','+(py<80?py+CAR_H+50:py).toFixed(1)+')');}
+    var s=Math.floor(score);if(s!==shown){shown=s;scoreEl.textContent=s;}
+    if(hitT>0)hitT-=dt;
+    else if(!touched)setHint('Drag or tilt to steer');
+    else setHint(onc?'Wrong side. Pass, then get back.':'Your side crawls. The gap is over the line.');
+  }
+  function frame(t){if(!running)return;var dt=Math.min(.05,(t-last)/1000)||0;last=t;step(dt);requestAnimationFrame(frame);}
+  function start(){if(running||!onScreen||document.hidden)return;running=true;last=performance.now();requestAnimationFrame(frame);}
+  function stop(){running=false;}
+  if('IntersectionObserver' in window){new IntersectionObserver(function(en){onScreen=en[0].isIntersecting;onScreen?start():stop();}).observe(root);}
+  else start();
+  document.addEventListener('visibilitychange',function(){document.hidden?stop():start();});
+
+  function scale(){return svg.getBoundingClientRect().height/VH;}
+  root.addEventListener('pointerdown',function(e){
+    if(e.target===tiltBtn)return;
+    dragging=true;startY=e.clientY;startTarget=target;
+    try{root.setPointerCapture(e.pointerId);}catch(_){}
+    root.focus({preventScroll:true});interact();e.preventDefault();
+  });
+  root.addEventListener('pointermove',function(e){if(!dragging)return;target=clamp(startTarget+(e.clientY-startY)/scale());interact();});
+  function end(){dragging=false;}
+  root.addEventListener('pointerup',end);root.addEventListener('pointercancel',end);
+  root.addEventListener('keydown',function(e){
+    if(e.key==='ArrowUp'){target=clamp(target-LANE_H);interact();e.preventDefault();}
+    else if(e.key==='ArrowDown'){target=clamp(target+LANE_H);interact();e.preventDefault();}
+  });
+
+  /* tilt: gamma in portrait, beta in landscape. iOS asks permission on a tap. */
+  function onOrient(e){
+    var land=(screen.orientation&&/landscape/.test(screen.orientation.type))||Math.abs(window.orientation||0)===90;
+    var g=land?e.beta:e.gamma; if(g==null)return;
+    target=clamp((ROAD_TOP+ROAD_BOT)/2-CAR_H/2+g*4.5);interact();
+  }
+  function tiltSet(on){
+    tiltOn=on;tiltBtn.setAttribute('aria-pressed',on?'true':'false');tiltBtn.textContent=on?'Tilt on':'Tilt';
+    (on?window.addEventListener:window.removeEventListener).call(window,'deviceorientation',onOrient);
+  }
+  if(window.DeviceOrientationEvent&&matchMedia('(pointer:coarse)').matches){
+    tiltBtn.hidden=false;
+    tiltBtn.addEventListener('click',function(){
+      if(tiltOn){tiltSet(false);return;}
+      if(typeof DeviceOrientationEvent.requestPermission==='function'){
+        DeviceOrientationEvent.requestPermission().then(function(s){if(s==='granted')tiltSet(true);}).catch(function(){});
+      }else tiltSet(true);
+    });
+  }
+})();
 </script>
 </body>
 </html>

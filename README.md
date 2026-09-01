@@ -11,7 +11,8 @@ The custom domain comes from the `CNAME` file; HTTPS is enforced.
 | `terms.html` | https://driveycar.com/terms.html | Terms of service |
 | `press.html` + `press/` | https://driveycar.com/press.html | Press kit: screenshots, GIF, MP4, fact sheet, zip |
 
-Every page is self-contained: inline CSS, no external requests, no build step, no JavaScript.
+Every page is self-contained: inline CSS, no external requests, no build step. The only script
+is the highway scene on the home page, and it never leaves the page.
 
 This repo is a publish target. Pages are authored elsewhere and copied here, so edits made
 directly in this repo will be overwritten by the next publish.
