@@ -6,7 +6,7 @@ Drivey Car is a bright voxel arcade driving game about momentum, made for iPhone
 Apple Watch by solo developer Dave Howard of Satoru Labs. The car handles the gas all by
 itself and always wants to go. You steer, thread the traffic, and hold to brake at the edge
 of a crossing, then release into the gap while the train thunders past. Three free driving
-modes, a shared worldwide Daily Run, four changing worlds, and a garage of unlockable voxel
+modes, a shared worldwide Daily Run, five changing worlds, and a garage of unlockable voxel
 cars. Free with no ads, no accounts, and no tracking; one optional $2.99 Supporter Pack adds
 the Secret Agent Pursuer mode and the rest of the extras. The Apple Watch version is a
 complete standalone game steered with the Digital Crown.
@@ -36,7 +36,8 @@ WHAT IS IN IT
   Department's ranks. It keeps ramping up the way Highway does. Its own leaderboard, and its
   own soundtrack: Pursuit Directive takes over for the whole run.
 - The Daily Run: one shared worldwide course per day with its own 24-hour leaderboard.
-- Four changing worlds that cycle as you drive, from countryside to a rusted-out dystopia.
+- Five changing worlds that cycle as you drive, from countryside to a rusted-out dystopia
+  and on into the dark.
 - Night, for everyone. The roads after dark are harder, so night was never going to be for
   sale. It counts the same on every board.
 - Road power-ups: shield, coin magnet, coin burst, spare lives.
